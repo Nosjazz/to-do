@@ -1,19 +1,35 @@
-// Select the Elements
+// Selectors 
+const todoInput = document.querySelector(".todo-input");
+const todoButton = document.querySelector(".todo-button");
+const todoList = document.querySelector(".todo-list");
 
-const clear = document.querySelector(".clear");
+// Event Listeners
 
-const dateElement= document.getElementById("date");
-const list = document.getElementById("list");
-const input = document.getElementById("input");
+todoButton.addEventListener("click", addTodo);
 
-// Classes names
-const CHECK ="fa-check-circle";
-const UNCHECK = "fa-circle";
-const LINE_TROUGH ="lineThrough";
+// Functions
 
-
-// Show today
-const options = {weekday : "long",  month:"short", day:"numeric"};
-const today = new Date ();
-
-dateElement.innerHTML = today.toLocaleDateString("en-US", options);
+function addTodo(event) {
+        //Prevent form from submitting
+    event.preventDefault();
+        //todo DIV
+    const todoDiv = document.createElement("div");
+    todoDiv.classList.add("todo");
+        // create LI
+    const newTodo = document.createElement("li");
+    newTodo.innerText = "hey";
+    newTodo.classList.add("todo-item");
+    todoDiv.appendChild(newTodo);
+        //Check mark button
+    const completedButton = document.createElement("button");
+    completedButton.innerHTML = "<i class="fas fa-check"></i>";
+    completedButton.classList.add("completed-btn");
+    todoDiv.appendChild(completedButton);
+        //Check trash button
+    const trashButton = document.createElement("button");
+    trashButton.innerHTML = "<i class="fas fa-trash"></i>";
+    trashButton.classList.add("trash-btn");
+    todoDiv.appendChild(trashButton);
+        //Append to list
+    todoList.appendChild(todoDiv);
+}
